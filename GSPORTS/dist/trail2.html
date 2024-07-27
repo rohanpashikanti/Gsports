@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <title>GSPORTS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/hint.css/2.7.0/hint.min.css'>
+        <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: "Poppins", sans-serif;
+            color: #ffffff;
+            background-image: url('https://filesblog.bizvibe.com/wp-content/webp-express/webp-images/uploads/2020/07/sports-leagues-by-revenue.jpg.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-image: inherit;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            filter: blur(8px);
+        }
+
+        .page-1, .page-2, .page-3 {
+            position: relative;
+            z-index: 1;
+        }
+
+        .navigation {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .page-1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100%;
+            background-image: url('https://filesblog.bizvibe.com/wp-content/webp-express/webp-images/uploads/2020/07/sports-leagues-by-revenue.jpg.webp');
+        }
+
+        .navigation__link {
+            position: relative;
+            display: block;
+            font-weight: 900;
+            font-size: 5rem;
+            line-height: 1.5;
+            text-decoration: none;
+            color: black;
+            -webkit-text-stroke: 1px #ffffff;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+                -ms-user-select: none;
+                    user-select: none;
+        }
+        .navigation__link:hover {
+            color: #ffffff;
+            -webkit-text-stroke: 1px #212121;
+            transition: 0.25s;
+        }
+        .navigation__link:hover::before {
+            transform: translate(12px, -12px);
+            color: #ff1744;
+            -webkit-text-stroke: 1px #212121;
+        }
+        .navigation__link:hover::after {
+            transform: translate(24px, -24px);
+            color: #4dd0e1;
+            -webkit-text-stroke: 1px #212121;
+        }
+        .navigation__link::before, .navigation__link::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            transition: 0.5s;
+            -webkit-text-stroke: 1px transparent;
+        }
+        .page-2 {
+            display: none;
+        }
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .card {
+            position: relative;
+            width: 325px;
+            height: 450px;
+            background: #000;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+        }
+        .poster {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .poster::before {
+            content: '';
+            position: absolute;
+            bottom: -45%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            transition: .3s;
+        }
+        .card:hover .poster::before {
+            bottom: 0;
+        }
+        .poster img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .3s;
+        }
+        .card:hover .poster img {
+            transform: scale(1.1);
+        }
+        .details {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 1.5em 1.5em 2em;
+            background: #000a;
+            backdrop-filter: blur(16px) saturate(120%);
+            transition: .3s;
+            color: #fff;
+            z-index: 2;
+        }
+        .card:hover .details {
+            bottom: 0;
+        }
+        .details h1,
+        .details h2 {
+            font-weight: 700;
+        }
+        .details h1 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        .details h2 {
+            font-weight: 400;
+            font-size: 1em;
+            margin-bottom: 10px;
+            opacity: .6;
+        }
+        .details .rating {
+            position: relative;
+            margin-bottom: 15px;
+            display: flex;
+            gap: .25em;
+        }
+        .details .rating i {
+            color: #e3c414;
+        }
+        .details .rating span {
+            margin-left: 0.25em;
+        }
+        .details .tags {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375em;
+            margin-bottom: 0.855em;
+            font-size: .85em;
+        }
+
+        .details .tags span {
+            display: inline-block;
+            padding: .35rem .35rem;
+            color: #fff;
+            border: 1.5px solid rgba(255 255 255 / 0.4);
+            border-radius: 50px;
+            width: fit-content;
+        }
+        .details .desc {
+            color: #fff;
+            opacity: .8;
+            line-height: 1.5;
+            margin-bottom: 1em;
+        }
+        .details .cast h3 {
+            margin-bottom: .5em;
+        }
+        .details .cast ul {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.625rem;
+            width: 100%;
+        }
+        .details .cast ul li {
+            list-style: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1.5px solid #fff;
+        }
+        .details .cast ul li img {
+            width: 100%;
+            height: 100%;
+        }
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Poppins", sans-serif;
+            }
+
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+            }
+
+            .container {
+                background-color: #fff;
+                opacity: 0.5;
+                padding: 40px;
+                border-radius: 20px;
+                border: 5px solid #ffffff;
+            }
+
+            .container .form {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .container .form.signin,
+            .container.signinForm .form.signup {
+                display: none;
+            }
+
+            .container.signinForm .form.signin {
+                display: flex;
+            }
+
+            .container .form h2 ,.container .form.value{
+                color: #000000;
+                font-weight: 500;
+                letter-spacing: 0.1em;
+            }
+
+            .container .form .inputBox {
+                position: relative;
+                width: 300px;
+            }
+
+            .container .form .inputBox input {
+                padding: 12px 10px 12px 48px;
+                border: none;
+                width: 100%;
+                background: #000000;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                color: #ffffffd4;
+                font-weight: 300;
+                border-radius: 25px;
+                font-size: 1em;
+                box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                    5px 5px 15px rgba(0, 0, 0, 0.35);
+                transition: 0.5s;
+                outline: none;
+            }
+
+            .container .form .inputBox span {
+                position: absolute;
+                left: 0;
+                padding: 12px 10px 12px 48px;
+                pointer-events: none;
+                font-size: 1em;
+                font-weight: 300;
+                transition: 0.5s;
+                letter-spacing: 0.05em;
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .container .form .inputBox input:valid ~ span,
+            .container .form .inputBox input:focus ~ span {
+                color: #00dfc4;
+                border: 1px solid #00dfc4;
+                background: #223243;
+                transform: translateX(25px) translateY(-7px);
+                padding: 0 8px;
+                border-radius: 10px;
+                letter-spacing: 0.1em;
+                font-weight: 750;
+                font-size: 0.6rem;
+                line-height: 1.5;
+                text-decoration: none;
+                color: wheat;
+            }
+
+            .container .form .inputBox input:valid,
+            .container .form .inputBox input:focus {
+                border: 1px solid #00dfc4;
+            }
+
+            .container .form .inputBox i {
+                position: absolute;
+                top: 15px;
+                left: 16px;
+                width: 25px;
+                padding: 2px 0;
+                padding-right: 8px;
+                color: #00dfc4;
+                border-right: 1px solid #00dfc4;
+            }
+
+            .container .form .inputBox input[type="submit"] {
+                background: #00dfc4;
+                color: #ffffffac;
+                padding: 10px 0;
+                font-weight: 500;
+                cursor: pointer;
+                box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                    5px 5px 15px rgba(0, 0, 0, 0.35),
+                    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+                    inset 5px 5px 15px rgba(0, 0, 0, 0.35);
+            }
+
+            .container .form p {
+                color: rgba(0, 0, 0, 0.52);
+                font-size: 0.75em;
+                font-weight: 300;
+            }
+
+            .container .form p a {
+                font-weight: 500;
+                color: #000000;
+            }
+            .container .form .inputBox input[type="button"] {
+                background: #00dfc4;
+                color: #223243;
+                padding: 10px 0;
+                font-weight: 500;
+                cursor: pointer;
+                box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                    5px 5px 15px rgba(0, 0, 0, 0.35),
+                    inset 5px 5px 15px rgba(0, 0, 0, 0.35);
+            }
+
+            .container .form .inputBox input[type="button"]:hover {
+                background: #00c4b4;
+            }
+            .page-4 .container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(255, 255, 255, 0.5);
+                padding: 40px;
+                border-radius: 20px;
+                border: 5px solid #ffffff;
+                width: 90%;
+                max-width: 1000px;
+                opacity: 1;
+            }
+
+            .sport-layout {
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .sport-image-container {
+                flex: 0 0 325px; 
+                height: 450px; 
+                opacity: 1;
+            }
+
+            .sport-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+                filter: contrast(100%) brightness(100%);
+            }
+
+            .sport-info {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .sport-info h2 {
+                color: #000000;
+                font-weight: 500;
+                letter-spacing: 0.1em;
+                margin-bottom: 20px;
+                font-size: 24px;
+            }
+
+            .sport-info p {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .slot-selector {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+
+            .slot-selector .inputBox {
+                flex: 0 0 calc(50% - 7.5px);
+            }
+
+            .inputBox input[type="button"] {
+                width: 100%;
+                background: #00dfc4;
+                color: #223243;
+                padding: 10px 0;
+                font-weight: 500;
+                cursor: pointer;
+                border: none;
+                border-radius: 25px;
+                font-size: 14px;
+                box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                    5px 5px 15px rgba(0, 0, 0, 0.35),
+                    inset 5px 5px 15px rgba(0, 0, 0, 0.35);
+            }
+
+            .inputBox input[type="button"]:hover {
+                background: #00c4b4;
+            }
+
+            .inputBox input[type="button"].selected {
+                background: green;
+                color: #ffffff;
+            }
+
+            .book-slot {
+                margin-top: 20px;
+            }
+
+            .book-slot input[type="button"] {
+                width: 100%;
+                background: #4CAF50;
+                color: white;
+                padding: 15px 0;
+                font-size: 15px;
+                font-weight: bold;
+                border: none;
+                border-radius: 25px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .book-slot input[type="button"]:hover {
+                background: #45a049;
+            }
+            .back-button {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                padding: 10px 20px;
+                background-color: #00dfc4;
+                color: #223243;
+                border: none;
+                border-radius: 25px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+                transition: background-color 0.3s;
+            }
+
+            .back-button:hover {
+                background-color: #00c4b4;
+            }
+            .inputBox input[type="button"].booked {
+                background: #ff6b6b;
+                color: #ffffff;
+                cursor: not-allowed;
+            }
+            .admin-panel {
+                background-color: rgba(255, 255, 255, 0.5);
+                padding: 40px;
+                border-radius: 20px;
+                border: 5px solid #ffffff;
+                width: 90%;
+                max-width: 800px;
+                margin: 20px auto;
+            }
+
+            .admin-panel h2 {
+                color: #000000;
+                font-weight: 500;
+                letter-spacing: 0.1em;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .admin-panel table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+
+            .admin-panel th, .admin-panel td {
+                padding: 10px;
+                border: 1px solid #000000;
+                text-align: left;
+            }
+
+            .admin-panel th {
+                background-color: #00dfc4;
+                color: #223243;
+                font-weight: bold;
+            }
+
+            .admin-panel tr:nth-child(even) {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .admin-panel button {
+                width: 100%;
+                background: #00dfc4;
+                color: #223243;
+                padding: 10px 0;
+                font-weight: 500;
+                cursor: pointer;
+                border: none;
+                border-radius: 25px;
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+
+            .admin-panel button:hover {
+                background: #00c4b4;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page-1 ">
+        <ul class="navigation">
+            <li class="navigation__item">
+            <a class="navigation__link" href="#" data-text="GSPORTS">GSPORTS</a>
+            </li>
+        </ul>
+        </div>
+        <div class="page-2 ">
+            <div class="container">
+                <div class="form signup">
+                <h2>Sign Up</h2>
+                <div class="inputBox">
+                    <input type="text" required="required" name="username">
+                    <i class="fa-regular fa-user"></i>
+                    <span>username</span>
+                </div>
+                <div class="inputBox">
+                    <input type="text" required="required" name="email">
+                    <i class="fa-regular fa-envelope"></i>
+                    <span>email address</span>
+                </div>
+                <div class="inputBox">
+                    <input type="password" required="required" name="password">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>create password</span>
+                </div>
+                <div class="inputBox">
+                    <input type="password" required="required" name="confirmPassword">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>confirm password</span>
+                </div>
+            <div class="inputBox">
+                <input type="button" value="create" onclick="createAccount()" style="color: #000; font-size: 15px; letter-spacing: 0.1em;
+                font-weight: 750;
+                line-height: 2;
+                text-decoration: none;">
+            </div>
+            <p>Already a member ? <a href="#" class="login">Log in</a></p>
+            </div>
+            
+            <div class="form signin">
+                <h2>Sign In</h2>
+                <div class="inputBox">
+                <input type="text" required="required" name="username">
+                <i class="fa-regular fa-user"></i>
+                <span>username</span>
+                </div>
+                <div class="inputBox">
+                <input type="password" required="required" name="password">
+                <i class="fa-solid fa-lock"></i>
+                <span>password</span>
+                </div>
+                <div class="inputBox">
+                <input type="button" value="login" onclick="validateAndProceed('signin')" style="color: #000; font-size: 15px; letter-spacing: 0.1em;
+                    font-weight: 750;
+                    line-height: 2;
+                    text-decoration: none;">
+                </div>
+                <p>Not Registered ? <a href="#" class="create">Create an account</a></p>
+            </div>
+        </div>
+        </div>
+        <div class="page-3" style="display: none;">
+            <div class="wrapper">
+                <div class="card">
+                    <div class="poster"><img src="/Users/rohanpashikanti/Downloads/b.png" alt="Indoor Sports"></div>
+                    <div class="details">
+                        <h1>Indoor Sports</h1>
+                        <h2>Timings : 1:30pm - 5:45pm</h2>
+                        <p class="desc">
+                            Select Your Sports
+                        </p>
+                        <div class="tags">
+                            <span class="tag" onclick="showSportDetails('table-tennis')">Table Tennis</span>
+                            <span class="tag" onclick="showSportDetails('chess')">Chess</span>
+                            <span class="tag" onclick="showSportDetails('carrom')">Carrom</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="poster"><img src="/Users/rohanpashikanti/Downloads/c.png" alt="Outdoor Sports"></div>
+                    <div class="details">
+                        <h1>Outdoor Sports</h1>
+                        <h2>Timings : 2:00pm - 5:45pm</h2>
+                        <p class="desc">
+                            Select Your Sports
+                        </p>
+                        <div class="tags">
+                            <span class="tag" onclick="showSportDetails('cricket')">Cricket</span>
+                            <span class="tag" onclick="showSportDetails('football')">Football</span>
+                            <span class="tag" onclick="showSportDetails('volleyball')">Volleyball</span>
+                            <span class="tag" onclick="showSportDetails('basketball')">Basketball</span>
+                            <span class="tag" onclick="showSportDetails('kabaddi')">Kabaddi</span>
+                            <span class="tag" onclick="showSportDetails('kho-kho')">Kho-kho</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-4" style="display: none;">
+            <button class="back-button" onclick="goToPage(3)">Back</button>
+            <div class="container">
+                <div id="table-tennis" class="sport-details">
+                    <div class="sport-layout">
+                        <div class="sport-image-container">
+                            <img src="https://news.cgtn.com/news/2021-07-23/ITTF-adds-50cm-to-width-of-table-tennis-field-for-Tokyo-Olympics-128gt9dQyic/img/306c4e53fc564da79f7d2b36a9bc50d6/306c4e53fc564da79f7d2b36a9bc50d6.png" alt="Table Tennis" class="sport-image">
+                        </div>
+                        <div class="sport-info"><br><br><br>
+                            <h2>Table Tennis</h2>
+                            <p>Timings: 1:30pm - 5:45pm</p>
+                            <p>Duration: 30min</p>
+                            <div class="slot-selector">
+                                <div class="inputBox">
+                                    <input type="button" value="1:30pm - 2:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="2:00pm - 2:30pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="2:30pm - 3:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:00pm - 3:30pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:30pm - 4:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:00pm - 4:30pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:30pm - 5:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="5:00pm - 5:45pm" onclick="selectSlot(this)">
+                                </div>
+                                <!-- Add more time slots as needed -->
+                            </div>
+                            <div class="inputBox">
+                                <input type="button" value="Book Your Slot Now" onclick="bookSlot('table-tennis')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="chess" class="sport-details">
+                    <div class="sport-layout">
+                        <div class="sport-image-container">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Chess_pieces_close_up.jpg/1200px-Chess_pieces_close_up.jpg" alt="chess" class="sport-image">
+                        </div>
+                        <div class="sport-info"><br><br><br>
+                            <h2>chess</h2>
+                            <p>Timings: 1:30pm - 5:45pm</p>
+                            <p>Duration: 30min</p>
+                            <div class="slot-selector">
+                                <div class="inputBox">
+                                    <input type="button" value="1:30pm - 2:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="2:00pm - 2:30pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="2:30pm - 3:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:00pm - 3:30pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:30pm - 4:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:00pm - 4:30pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:30pm - 5:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="5:00pm - 5:45pm" onclick="selectSlot(this)">
+                                </div>
+                                <!-- Add more time slots as needed -->
+                            </div>
+                            <div class="inputBox">
+                                <input type="button" value="Book Your Slot Now" onclick="bookSlot('chess')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="carrom" class="sport-details">
+                    <div class="sport-layout">
+                        <div class="sport-image-container">
+                            <img src="https://topcricketstore.com/cdn/shop/articles/BasicsCarrom.webp?v=1704197771" alt="carrom" class="sport-image">
+                        </div>
+                        <div class="sport-info"><br><br><br>
+                            <h2>carrom</h2>
+                            <p>Timings: 1:30pm - 5:45pm</p>
+                            <p>Duration: 30min</p>
+                            <div class="slot-selector">
+                                <div class="inputBox">
+                                    <input type="button" value="1:30pm - 2:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="2:00pm - 2:30pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="2:30pm - 3:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:00pm - 3:30pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:30pm - 4:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:00pm - 4:30pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:30pm - 5:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="5:00pm - 5:45pm" onclick="selectSlot(this)">
+                                </div>
+                                <!-- Add more time slots as needed -->
+                            </div>
+                            <div class="inputBox">
+                                <input type="button" value="Book Your Slot Now" onclick="bookSlot('carrom')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="cricket" class="sport-details">
+                    <div class="sport-layout">
+                        <div class="sport-image-container">
+                            <img src="https://media.hudle.in/photos/59422" alt="carrom" class="sport-image">
+                        </div>
+                        <div class="sport-info"><br><br><br>
+                            <h2>cricket</h2>
+                            <p>Timings: 2:30pm - 5:45pm</p>
+                            <p>Duration: 1hr</p>
+                            <div class="slot-selector">
+                                <div class="inputBox">
+                                    <input type="button" value="2:00pm - 3:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:00pm - 4:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:00pm - 5:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="5:00pm - 5:45pm" onclick="selectSlot(this)">
+                                </div>
+                                <!-- Add more time slots as needed -->
+                            </div>
+                            <div class="inputBox">
+                                <input type="button" value="Book Your Slot Now" onclick="bookSlot('cricket')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="football" class="sport-details">
+                    <div class="sport-layout">
+                        <div class="sport-image-container">
+                            <img src="https://cdn.britannica.com/69/228369-050-0B18A1F6/Asian-Cup-Final-2019-Hasan-Al-Haydos-Qatar-Japan-Takumi-Minamino.jpg" alt="carrom" class="sport-image">
+                        </div>
+                        <div class="sport-info"><br><br><br>
+                            <h2>football</h2>
+                            <p>Timings: 2:30pm - 5:45pm</p>
+                            <p>Duration: 1hr</p>
+                            <div class="slot-selector">
+                                <div class="inputBox">
+                                    <input type="button" value="2:00pm - 3:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:00pm - 4:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:00pm - 5:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="5:00pm - 5:45pm" onclick="selectSlot(this)">
+                                </div>
+                                <!-- Add more time slots as needed -->
+                            </div>
+                            <div class="inputBox">
+                                <input type="button" value="Book Your Slot Now" onclick="bookSlot('football')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="volleyball" class="sport-details">
+                    <div class="sport-layout">
+                        <div class="sport-image-container">
+                            <img src="https://static.theprint.in/wp-content/uploads/2022/02/CH_PVL20220225135810.jpg" alt="carrom" class="sport-image">
+                        </div>
+                        <div class="sport-info"><br><br><br>
+                            <h2>volleyball</h2>
+                            <p>Timings: 2:30pm - 5:45pm</p>
+                            <p>Duration: 1hr</p>
+                            <div class="slot-selector">
+                                <div class="inputBox">
+                                    <input type="button" value="2:00pm - 3:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:00pm - 4:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:00pm - 5:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="5:00pm - 5:45pm" onclick="selectSlot(this)">
+                                </div>
+                                <!-- Add more time slots as needed -->
+                            </div>
+                            <div class="inputBox">
+                                <input type="button" value="Book Your Slot Now" onclick="bookSlot('volleyball')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="basketball" class="sport-details">
+                    <div class="sport-layout">
+                        <div class="sport-image-container">
+                            <img src="https://cdn.britannica.com/44/193844-131-1E4A9F84/ball-net-basketball-game-arena.jpg?w=840&h=460&c=crop" alt="carrom" class="sport-image">
+                        </div>
+                        <div class="sport-info"><br><br><br>
+                            <h2>basketball</h2>
+                            <p>Timings: 2:30pm - 5:45pm</p>
+                            <p>Duration: 1hr</p>
+                            <div class="slot-selector">
+                                <div class="inputBox">
+                                    <input type="button" value="2:00pm - 3:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:00pm - 4:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:00pm - 5:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="5:00pm - 5:45pm" onclick="selectSlot(this)">
+                                </div>
+                                <!-- Add more time slots as needed -->
+                            </div>
+                            <div class="inputBox">
+                                <input type="button" value="Book Your Slot Now" onclick="bookSlot('basketball')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="kabaddi" class="sport-details">
+                    <div class="sport-layout">
+                        <div class="sport-image-container">
+                            <img src="https://img.olympics.com/images/image/private/t_social_share_thumb/f_auto/primary/edbxdlh2egyhauh1v0ed" alt="carrom" class="sport-image">
+                        </div>
+                        <div class="sport-info"><br><br><br>
+                            <h2>kabaddi</h2>
+                            <p>Timings: 2:30pm - 5:45pm</p>
+                            <p>Duration: 1hr</p>
+                            <div class="slot-selector">
+                                <div class="inputBox">
+                                    <input type="button" value="2:00pm - 3:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:00pm - 4:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:00pm - 5:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="5:00pm - 5:45pm" onclick="selectSlot(this)">
+                                </div>
+                                <!-- Add more time slots as needed -->
+                            </div>
+                            <div class="inputBox">
+                                <input type="button" value="Book Your Slot Now" onclick="bookSlot('kabaddi')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="kho-kho" class="sport-details">
+                    <div class="sport-layout">
+                        <div class="sport-image-container">
+                            <img src="https://rukminim2.flixcart.com/image/850/1000/knj7wcw0/board-game/g/5/w/kho-kho-funskool-original-imag26wscfb2fkzc.jpeg?q=90&crop=false" alt="carrom" class="sport-image">
+                        </div>
+                        <div class="sport-info"><br><br><br>
+                            <h2>kho-kho</h2>
+                            <p>Timings: 2:30pm - 5:45pm</p>
+                            <p>Duration: 1hr</p>
+                            <div class="slot-selector">
+                                <div class="inputBox">
+                                    <input type="button" value="2:00pm - 3:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="3:00pm - 4:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="4:00pm - 5:00pm" onclick="selectSlot(this)">
+                                </div>
+                                <div class="inputBox">
+                                    <input type="button" value="5:00pm - 5:45pm" onclick="selectSlot(this)">
+                                </div>
+                                <!-- Add more time slots as needed -->
+                            </div>
+                            <div class="inputBox">
+                                <input type="button" value="Book Your Slot Now" onclick="bookSlot('kho-kho')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add similar structures for other sports (chess, carrom, etc.) -->
+            </div>
+        </div>
+    </body>
+    <script>
+        let login = document.querySelector('.login');
+        let create = document.querySelector('.create');
+        let container = document.querySelector('.container');
+
+        // Load users from localStorage or initialize empty array
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let currentUser = null;
+
+        login.onclick = function(){
+            container.classList.add('signinForm');
+        }
+
+        create.onclick = function(){
+            container.classList.remove('signinForm');
+        }
+
+        function validateAndProceed(formClass) {
+            const form = document.querySelector(`.${formClass}`);
+            const inputs = form.querySelectorAll('input[required]');
+            let isValid = true;
+            let userData = {};
+
+            inputs.forEach(input => {
+                if (!input.value) {
+                    isValid = false;
+                    input.style.border = '1px solid red';
+                } else {
+                    input.style.border = '1px solid #ccc';
+                    userData[input.getAttribute('name')] = input.value;
+                }
+            });
+
+            console.log('Form data:', userData);
+
+            if (isValid) {
+                if (formClass === 'signup') {
+                    if (userData.password !== userData.confirmPassword) {
+                        alert('Passwords do not match!');
+                        return;
+                    }
+                    if (users.some(user => user.username === userData.username)) {
+                        alert('Username already exists!');
+                        return;
+                    }
+                    users.push(userData);
+                    localStorage.setItem('users', JSON.stringify(users));
+                    console.log('Users after signup:', users);
+                    alert('Account created successfully!');
+                    document.querySelector('.form.signup').style.display = 'none';
+                    document.querySelector('.form.signin').style.display = 'flex';
+                } else if (formClass === 'signin') {
+                    console.log('Attempting login with:', userData);
+                    console.log('Current users:', users);
+                    if (userData.username === 'gsports' && userData.password === 'rahul123!') {
+                        showAdminPanel();
+                    } else {
+                        let user = users.find(u => u.username === userData.username && u.password === userData.password);
+                        console.log('Found user:', user);
+                        if (user) {
+                            currentUser = user;
+                            console.log('Login successful:', currentUser);
+                            document.querySelector('.page-2').style.display = 'none';
+                            document.querySelector('.page-3').style.display = 'block';
+                        } else {
+                            console.log('Login failed: User not found or password incorrect');
+                            alert('Invalid username or password!');
+                        }
+                    }
+                }
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        }
+
+        function showAdminPanel() {
+            document.querySelectorAll('.page-1, .page-2, .page-3, .page-4').forEach(page => {
+                page.style.display = 'none';
+            });
+
+            const adminPanel = document.createElement('div');
+            adminPanel.className = 'admin-panel';
+            adminPanel.innerHTML = `
+                <h2>Admin Panel</h2>
+                <div id="bookings-list"></div>
+                <button onclick="clearAllBookings()">Clear All Bookings</button>
+            `;
+            document.body.appendChild(adminPanel);
+
+            displayBookings();
+        }
+
+        function displayBookings() {
+            const bookingsList = document.getElementById('bookings-list');
+            const bookedSlots = getBookedSlots();
+            let bookingsHTML = `
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Sport</th>
+                        <th>Slot</th>
+                        
+                    </tr>
+            `;
+
+            for (const [key, username] of Object.entries(bookedSlots)) {
+                const lastHyphenIndex = key.lastIndexOf('-');
+                const sport = key.substring(0, lastHyphenIndex).replace(/-/g, ' ');
+                const slot = key.substring(lastHyphenIndex + 1);
+                const date = new Date().toLocaleDateString();
+                bookingsHTML += `
+                    <tr>
+                        <td>${date}</td>
+                        <td>${username}</td>
+                        <td>${sport}</td>
+                        <td>${slot}</td>
+                    </tr>
+                `;
+            }
+
+            bookingsHTML += '</table>';
+
+            if (Object.keys(bookedSlots).length === 0) {
+                bookingsHTML = '<p>No bookings available.</p>';
+            }
+
+            bookingsList.innerHTML = bookingsHTML;
+        }
+
+        function clearAllBookings() {
+            if (confirm('Are you sure you want to clear all bookings?')) {
+                localStorage.setItem('bookedSlots', JSON.stringify({}));
+                displayBookings();
+                alert('All bookings have been cleared.');
+            }
+        }
+
+        function goToPage(pageNumber) {
+            document.querySelectorAll('.page-1, .page-2, .page-3, .page-4').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.querySelector(`.page-${pageNumber}`).style.display = 'block';
+            
+            if (pageNumber === 2) {
+                container.classList.remove('signinForm');
+            }
+        }
+
+        function showSportDetails(sport) {
+            document.querySelector('.page-3').style.display = 'none';
+            document.querySelector('.page-4').style.display = 'block';
+            
+            document.querySelectorAll('.sport-details').forEach(el => el.style.display = 'none');
+            
+            const sportElement = document.getElementById(sport);
+            sportElement.style.display = 'block';
+
+            updateSlotAvailability(sport);
+        }
+
+        function updateSlotAvailability(sport) {
+            const bookedSlots = getBookedSlots();
+            const slots = document.querySelectorAll(`#${sport} .slot-selector input[type="button"]`);
+            
+            slots.forEach(slot => {
+                const slotKey = `${sport}-${slot.value}`;
+                if (bookedSlots[slotKey]) {
+                    slot.classList.add('booked');
+                    slot.disabled = true;
+                } else {
+                    slot.classList.remove('booked');
+                    slot.disabled = false;
+                }
+            });
+        }
+
+        function selectSlot(slot) {
+            if (slot.classList.contains('booked')) {
+                return;
+            }
+            
+            slot.closest('.slot-selector').querySelectorAll('input[type="button"]').forEach(el => el.classList.remove('selected'));
+            
+            slot.classList.add('selected');
+        }
+
+        function bookSlot(sport) {
+            const selectedSlot = document.querySelector(`#${sport} .slot-selector input.selected`);
+            if (selectedSlot) {
+                const slotKey = `${sport}-${selectedSlot.value}`;
+                const bookedSlots = getBookedSlots();
+                
+                if (bookedSlots[slotKey]) {
+                    alert('This slot is already booked.');
+                    return;
+                }
+                
+                bookedSlots[slotKey] = currentUser.username;
+                setBookedSlots(bookedSlots);
+                
+                alert(`Booked ${sport} for ${selectedSlot.value}`);
+                updateSlotAvailability(sport);
+            } else {
+                alert('Please select a slot first');
+            }
+        }
+
+        function initializeBookedSlots() {
+            if (!localStorage.getItem('bookedSlots')) {
+                localStorage.setItem('bookedSlots', JSON.stringify({}));
+            }
+        }
+
+        function getBookedSlots() {
+            return JSON.parse(localStorage.getItem('bookedSlots'));
+        }
+
+        function setBookedSlots(slots) {
+            localStorage.setItem('bookedSlots', JSON.stringify(slots));
+        }
+
+        // Initialize booked slots
+        initializeBookedSlots();
+
+        // Update the onclick attributes in the HTML
+        document.querySelector('.form.signup .inputBox input[type="button"]').setAttribute('onclick', 'validateAndProceed("signup")');
+        document.querySelector('.form.signin .inputBox input[type="button"]').setAttribute('onclick', 'validateAndProceed("signin")');
+
+        // Transition from page 1 to page 2
+        setTimeout(() => {
+            document.querySelector('.page-1').style.display = 'none';
+            document.querySelector('.page-2').style.display = 'block';
+        }, 5000);
+
+        // Debug: Log the initial users array
+        console.log('Initial users:', users);
+    </script>
+</html>
